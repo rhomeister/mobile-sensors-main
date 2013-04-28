@@ -1,0 +1,7 @@
+<sensors
+	factoryClass="uk.ac.soton.ecs.mobilesensors.configuration.IdenticalSensorFactory">
+	
+	<number>5</number>
+	
+	<sensorDefinitionFile>sensor.xml</sensorDefinitionFile>
+</sensors>

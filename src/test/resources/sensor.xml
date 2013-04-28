@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="sensor"
+		class="uk.ac.soton.ecs.mobilesensors.sensor.Sensor"
+		scope="prototype">
+		<property name="coordinationMechanism">
+			<bean
+				class="uk.ac.soton.ecs.mobilesensors.sensor.GreedyCoordinationMechanism">
+				<property name="temperature" value="20" />
+				<property name="utilityFunction"
+					ref="mutualInformation" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="mutualInformation"
+		class="uk.ac.soton.ecs.mobilesensors.sensor.MutualInformation">
+		<property name="predictor" ref="fixedWindow" />
+	</bean>
+
+	<bean id="fixedWindow"
+		class="uk.ac.soton.ecs.gp4j.wrapper.FixedWindowPredictor">
+		<property name="windowSize" value="10" />
+		<property name="regression" ref="gaussianProcessRegression" />
+	</bean>
+
+	<bean id="gaussianProcessRegression"
+		class="uk.ac.soton.ecs.gp4j.gp.GaussianProcessRegression">
+		<property name="hyperParameters">
+			<list>
+				<value>1.0</value>
+				<value>1.5</value>
+				<value>1.0</value>
+				<value>0.0001</value>
+			</list>
+		</property>
+		<property name="covarianceFunction">
+			<bean
+				class="uk.ac.soton.ecs.gp4j.gp.covariancefunctions.CovarianceFunctionFactory"
+				factory-method="getNoisy2DTimeSquaredExponentialCovarianceFunction">
+			</bean>
+		</property>
+	</bean>
+</beans>
