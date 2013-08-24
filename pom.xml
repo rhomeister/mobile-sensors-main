@@ -20,6 +20,11 @@
 			<version>1.8</version>
 		</dependency>
 		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.3.1</version>
@@ -209,12 +214,9 @@
 				</artifactId>
 			</plugin>
 
-			<!--
-				<plugin> <groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-clover-plugin</artifactId> <configuration>
-				<licenseLocation>${basedir}/src/test/clover/myclover.license</licenseLocation>
-				</configuration> </plugin>
-			-->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-clover-plugin</artifactId> 
+				<configuration> <licenseLocation>${basedir}/src/test/clover/myclover.license</licenseLocation> 
+				</configuration> </plugin> -->
 		</plugins>
 	</reporting>
 </project>
